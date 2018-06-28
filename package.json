@@ -1,7 +1,7 @@
 {
   "name": "project",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple diary",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development --open --hot",
