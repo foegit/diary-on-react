@@ -1,39 +1,62 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
+import AddEntryBox from '../components/AddEntryBOX';
+import Entry from '../components/Entry'
+import deleteEntry from '../actions/entryActions';
 
 class Diary extends Component {
   render(){
+    const {entries, comments, activeEntry, addEntry, deleteEntry, activateEntry} = this.props;
     return (
         <div className="diaryItems panel">
           <h1>Items</h1>
-          <div className="add-entry-box">
-            <input type="text" placeholder="Type name here..."/>
-            <button className="add-btn app-btn">Add new</button>
-          </div>
-          <div className="entry-list">
-            <div className="entry-item current-entry">
-              <div className="item-info">
-                <span className='entry-name'>
-                  <span className='title'>First item with custom name</span>
-                  <span className="statistic">123</span>
-                </span>
-                <button className='delete-btn app-btn'>Delete</button>
-              </div>
-            </div>
-            <div className="entry-item">
-              <div className="item-info">
-                <span className='entry-name'>
-                  <span className='title'>Second item</span>
-                  <span className="statistic">3</span>
-                </span>
-                <button className='delete-btn app-btn'>Delete</button>
-              </div>
-            </div>
+          <AddEntryBox onNewEntry={addEntry}/>
+          <div className="entry-list" >
+            {entries.map(entry =>
+              <Entry
+                key={entry.id}
+                name={entry.name}
+                comments={entry.countComments}
+                active={entry.id===activeEntry}
+                onDelete={()=>deleteEntry(entry.id)}
+                onActivate = {()=>activateEntry(entry.id)}
+                id={entry.id}/>)
+                }
           </div>
         </div>
       );
   }
 }
 
-export default Diary;
+function mapStateToProps(state){
+  return{
+    entries: state.entry,
+    comments: state.comments,
+    activeEntry: state.current_entry
+  }
+}
+
+function matchDispatchToProps(dispatch){
+
+  return{
+    deleteEntry: (id) => dispatch({
+    type: 'DELETE_ENTRY',
+    payload: id
+  }),
+  addEntry: (entry) => dispatch(
+    {
+      type: 'ADD_ENTRY',
+      payload: {name: entry}
+    }
+  ),
+  activateEntry: (id) => dispatch(
+  {
+    type: 'SET_CURRENT_ENTRY_ID',
+    payload: id
+  })
+  };
+}
+
+export default connect(mapStateToProps, matchDispatchToProps)(Diary);
