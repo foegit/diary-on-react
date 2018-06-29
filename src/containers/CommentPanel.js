@@ -1,39 +1,40 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+
+import CommentList from '../components/CommentList';
+import Comment from '../components/Comment';
+import AddCommentBox from '../components/AddCommentBox';
 
 class CommentPanel extends Component {
   render(){
+  const {comments, activeEntry, addComment} = this.props;
   return(
     <div className="commentBlock panel">
       <h1>Comments</h1>
-      <div className="comments-list">
-        <div className="comment">
-          <div className="icon" style={{backgroundColor: 'indigo'}}></div>
-          <div className="text">Lorem</div>
-        </div>
-        <div className="comment">
-          <div className="icon" style={{backgroundColor: 'skyblue'}}></div>
-          <div className="text">Lorem</div>
-        </div>
-        <div className="comment">
-          <div className="icon" style={{backgroundColor: 'orange'}}></div>
-          <div className="text">Lorem</div>
-        </div>
-        <div className="comment">
-          <div className="icon" style={{backgroundColor: 'red'}}></div>
-          <div className="text">Lorem</div>
-        </div>
-      </div>
-      <div className="addComment">
-        <div className='icon'style={{backgroundColor: 'gray'}} ></div>
-        <div className="newComment">
-          <textarea id="commentInput"></textarea>
-          <button className='app-btn send-btn'>Send</button>
-        </div>
-
-      </div>
+        <CommentList comments={comments.filter(comment => comment.entryId === activeEntry)}/>
+        <AddCommentBox onAdd={addComment} toentry={activeEntry}/>
     </div>
   );
 }
 }
 
-export default CommentPanel;
+function mapStateToProps(state){
+  return{
+    comments: state.comments,
+    activeEntry: state.current_entry
+  }
+}
+
+function mapDispatchToProps(dispatch){
+  return{
+    addComment: comment => dispatch(
+      {
+        type: 'ADD_COMMENT',
+        payload: comment
+      }
+    )
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(CommentPanel);

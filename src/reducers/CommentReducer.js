@@ -45,7 +45,7 @@ const initiallData = [
     id: 5,
     entryId: 2,
     author: 'pink',
-    name: `2#3 Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    title: `2#3 Lorem ipsum dolor sit amet, consectetur adipisicing elit,
     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     Ut enim ad .`
   },
@@ -53,6 +53,7 @@ const initiallData = [
 ];
 
 export default function (state = initiallData, action){
+  console.log('lol');
   if(action.type === "ADD_COMMENT"){
     action.payload.id = Date.now();
     return [...state, action.payload];

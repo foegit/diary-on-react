@@ -55,19 +55,23 @@ html{
           color: #555;
           flex: 1 0 100%;
         }
+        .app-btn{
+          border-radius: 4px;
+          border: 1px solid;
+          padding: 4px;
+          display: inline-block;
+          height: 35px;
+          outline: none;
+          font-weight: bold;
+          &:active{
+            transform: scale(0.95);
+          }
+        }
         .diaryItems{
           flex: 2 0 300px;
           display: flex;
           flex-wrap: wrap;
-          .app-btn{
-            border-radius: 4px;
-            border: 1px solid;
-            padding: 4px;
-            display: inline-block;
-            height: 35px;
-            outline: none;
-            font-weight: bold;
-          }
+
           .add-entry-box{
             display: flex;
             width: 100%;
@@ -89,12 +93,11 @@ html{
               margin-left: 10px;
               background-color: $main-color;
               width: 100px;
-              border-color: #0dc;
               color: #fff;
               font-weight: bold;
               height: 100%;
               &:hover{
-                background-color: #0cb;
+                background-color: complement($main-color);
               }
             }
           }
@@ -149,7 +152,6 @@ html{
               }
             }
           }
-
         }
         .commentBlock{
           flex: 1 0 300px;
@@ -158,8 +160,10 @@ html{
             width: 50px;
             height: 50px;
             margin-right: 20px;
+            flex-shrink: 0;
           }
           .comments-list{
+            margin-top: 20px;
             display: flex;
             flex-direction: column;
             font-size: 14px;
@@ -168,9 +172,6 @@ html{
               border-bottom: 1px solid #ddd;
               margin: 10px 0 10px 0;
               padding-bottom: 20px;
-              &:first-child{
-                margin-top: 30px;
-              }
             }
           }
           .addComment{
@@ -182,7 +183,7 @@ html{
               align-items: flex-end;
               #commentInput{
                 flex-grow: 1;
-              width: 100%;
+                width: 100%;
                 display: block;
                 max-width: 100;
                 resize: vertical;
@@ -191,7 +192,16 @@ html{
                 min-height: 54px;
               }
               .send-btn{
-                flex-wrap: wrap;
+                background-color: $main-color;
+
+
+                margin-top: 10px;
+                width: 60px;
+                color: #fff;
+                &:hover{
+                  background-color: complement($main-color);
+
+                }
               }
             }
           }
