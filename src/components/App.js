@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+
 import SideBar from './SideBar';
 import Content from './Content';
+import {addEntry, deleteEntry} from '../actions/entryActions';
+import {addComment} from '../actions/commentActions';
+
+import store from '../store';
 
 class App extends Component{
   render(){
@@ -11,4 +16,6 @@ class App extends Component{
     </React.Fragment>);
   }
 }
+
+
 export default App;
