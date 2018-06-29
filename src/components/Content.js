@@ -1,5 +1,5 @@
 import React from 'react';
-import Diary from './Diary';
+import Diary from '../containers/Diary';
 import CommentPanel from './CommentPanel';
 
 const Content = () =>{
