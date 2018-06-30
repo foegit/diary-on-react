@@ -45,7 +45,7 @@ const initiallData = [
     id: 5,
     entryId: 2,
     author: 'pink',
-    name: `2#3 Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    title: `2#3 Lorem ipsum dolor sit amet, consectetur adipisicing elit,
     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     Ut enim ad .`
   },
@@ -56,6 +56,10 @@ export default function (state = initiallData, action){
   if(action.type === "ADD_COMMENT"){
     action.payload.id = Date.now();
     return [...state, action.payload];
+  }
+  else if(action.type === "DELETE_ENTRY_COMMENTS")
+  {
+    return state.filter(comment=>comment.entryId !== action.payload);
   }
   return state;
 }
