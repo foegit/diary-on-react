@@ -2,22 +2,30 @@ const initiallData = [
   {
     id: 1,
     countComments: 321,
-    name: 'First item with cusstom name'
+    text: 'First item with custom name'
   },
   {
     id: 2,
     countComments: 3,
-    name: 'Second item is active'
+    text: 'Second item is active'
   }
 ];
 export default function (state=initiallData, action){
-  if(action.type === 'ADD_ENTRY'){
-    action.payload.id = Date.now();
-    action.payload.countComments = 0;
-    return [...state, action.payload];
-  }
-  else if(action.type === 'DELETE_ENTRY'){
-    return state.filter(entry => entry.id !== action.payload )
-  }
-  return state;
+  switch (action.type) {
+    case 'ADD_ENTRY':
+      action.payload.id = Date.now();
+      action.payload.countComments = 0;
+      return [...state, action.payload];
+    case 'DELETE_ENTRY':
+      return state.filter(entry =>
+      entry.id !== action.payload.id );
+    case 'INC_COMMENT_COUNT':
+      return state.map(entry=>{
+        if(entry.id === action.payload.id)
+          entry.countComments++;
+        return entry;
+      });
+    default:
+      return state;
+    }
 }

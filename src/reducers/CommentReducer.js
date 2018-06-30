@@ -53,10 +53,13 @@ const initiallData = [
 ];
 
 export default function (state = initiallData, action){
-  console.log('lol');
   if(action.type === "ADD_COMMENT"){
     action.payload.id = Date.now();
     return [...state, action.payload];
+  }
+  else if(action.type === "DELETE_ENTRY_COMMENTS")
+  {
+    return state.filter(comment=>comment.entryId !== action.payload);
   }
   return state;
 }

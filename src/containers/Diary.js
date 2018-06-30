@@ -4,7 +4,9 @@ import { bindActionCreators } from 'redux';
 
 import AddEntryBox from '../components/AddEntryBOX';
 import Entry from '../components/Entry'
-import deleteEntry from '../actions/entryActions';
+import { delete_entry, add_entry } from '../actions/entryActions';
+import { add_comment, delete_entry_comments } from '../actions/commentActions';
+import { select_entry, reset_select } from '../actions/selectEntryActions';
 
 class Diary extends Component {
   render(){
@@ -17,7 +19,7 @@ class Diary extends Component {
             {entries.map(entry =>
               <Entry
                 key={entry.id}
-                name={entry.name}
+                name={entry.text}
                 comments={entry.countComments}
                 active={entry.id===activeEntry}
                 onDelete={()=>deleteEntry(entry.id)}
@@ -39,23 +41,14 @@ function mapStateToProps(state){
 }
 
 function matchDispatchToProps(dispatch){
-
   return{
-    deleteEntry: (id) => dispatch({
-    type: 'DELETE_ENTRY',
-    payload: id
-  }),
-  addEntry: (entry) => dispatch(
-    {
-      type: 'ADD_ENTRY',
-      payload: {name: entry}
-    }
-  ),
-  activateEntry: (id) => dispatch(
-  {
-    type: 'SET_CURRENT_ENTRY_ID',
-    payload: id
-  })
+    deleteEntry: (id) => {
+      dispatch( delete_entry(id) );
+      dispatch( delete_entry_comments(id) );
+      dispatch( reset_select() );
+    },
+    addEntry: (entry) => dispatch( add_entry(entry)),
+    activateEntry: (id) => dispatch( select_entry(id) )
   };
 }
 
