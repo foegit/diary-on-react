@@ -74,8 +74,21 @@ html{
 
           .add-entry-box{
             display: flex;
+            flex-wrap: wrap;
             width: 100%;
             padding: 10px 0 10px 0;
+            .invalid-input-data{
+              border-color: rgba(200, 40,40, 0.7);
+            }
+            .errorLog{
+              position: absolute;
+              margin: 44px 0 0 12px;
+              font-style: italic;
+              color: #f10;
+              font-size: 12px;
+            }
+            
+
             input{
               border: 1px solid #ddd;
               padding: 10px;
