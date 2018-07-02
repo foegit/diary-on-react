@@ -1,3 +1,5 @@
+import { ADD_COMMENT, DELETE_ENTRY_COMMENTS } from '../actions/actionTypes';
+
 const initiallData = [
   {
     id: 1,
@@ -53,13 +55,13 @@ const initiallData = [
 ];
 
 export default function (state = initiallData, action){
-  if(action.type === "ADD_COMMENT"){
-    action.payload.id = Date.now();
-    return [...state, action.payload];
+  switch (action.type) {
+    case ADD_COMMENT:
+      action.payload.id = Date.now();
+      return [...state, action.payload];
+    case DELETE_ENTRY_COMMENTS:
+      return state.filter(comment=>comment.entryId !== action.payload);
+    default:
+      return state;
   }
-  else if(action.type === "DELETE_ENTRY_COMMENTS")
-  {
-    return state.filter(comment=>comment.entryId !== action.payload);
-  }
-  return state;
 }

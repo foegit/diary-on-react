@@ -1,16 +1,14 @@
-const ADD_ENTRY = "ADD_ENTRY";
-const DELETE_ENTRY = "DELETE_ENTRY";
-const INC_COMMENT_COUNT = "INC_COMMENT_COUNT";
+import { ADD_ENTRY, DELETE_ENTRY, INC_COMMENT_COUNT } from './actionTypes';
 
-export const add_entry = text => {
+export const addEntry = text => {
   return{ type: ADD_ENTRY,
           payload: {text} };
 }
-export const delete_entry = id => {
+export const deleteEntry = id => {
   return {  type: DELETE_ENTRY,
             payload: {id} };
 }
-export const inc_count_comment = id => {
+export const incCountComment = id => {
   return {  type: INC_COMMENT_COUNT,
             payload: {id} };
 }

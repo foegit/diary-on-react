@@ -8,5 +8,6 @@ const AddEntryBox = (props)=>
       let value = input.value;
       input.value = '';
       props.onNewEntry(value)}}>Add new</button>
-  </div>;
+  </div>
+  
 export default AddEntryBox;
