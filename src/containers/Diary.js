@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import AddEntryBox from '../components/AddEntryBOX';
+import AddEntryBox from '../components/AddEntryBox';
 import Entry from '../components/Entry'
-import { delete_entry, add_entry } from '../actions/entryActions';
-import { add_comment, delete_entry_comments } from '../actions/commentActions';
-import { select_entry, reset_select } from '../actions/selectEntryActions';
+import { deleteEntry, addEntry } from '../actions/entryActions';
+import { addComment, deleteEntryComments } from '../actions/commentActions';
+import { selectEntry, resetSelect } from '../actions/selectEntryActions';
 
 class Diary extends Component {
   render(){
@@ -43,12 +43,12 @@ function mapStateToProps(state){
 function matchDispatchToProps(dispatch){
   return{
     deleteEntry: (id) => {
-      dispatch( delete_entry(id) );
-      dispatch( delete_entry_comments(id) );
-      dispatch( reset_select() );
+      dispatch( deleteEntry(id) );
+      dispatch( deleteEntryComments(id) );
+      dispatch( resetSelect() );
     },
-    addEntry: (entry) => dispatch( add_entry(entry)),
-    activateEntry: (id) => dispatch( select_entry(id) )
+    addEntry: (entry) => dispatch( addEntry(entry)),
+    activateEntry: (id) => dispatch( selectEntry(id) )
   };
 }
 

@@ -1,7 +1,9 @@
+import { ADD_ENTRY, DELETE_ENTRY, INC_COMMENT_COUNT } from '../actions/actionTypes';
+
 const initiallData = [
   {
     id: 1,
-    countComments: 321,
+    countComments: 2,
     text: 'First item with custom name'
   },
   {
@@ -10,16 +12,17 @@ const initiallData = [
     text: 'Second item is active'
   }
 ];
+
 export default function (state=initiallData, action){
   switch (action.type) {
-    case 'ADD_ENTRY':
+    case ADD_ENTRY:
       action.payload.id = Date.now();
       action.payload.countComments = 0;
       return [...state, action.payload];
-    case 'DELETE_ENTRY':
+    case DELETE_ENTRY:
       return state.filter(entry =>
       entry.id !== action.payload.id );
-    case 'INC_COMMENT_COUNT':
+    case INC_COMMENT_COUNT:
       return state.map(entry=>{
         if(entry.id === action.payload.id)
           entry.countComments++;

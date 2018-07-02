@@ -1,11 +1,10 @@
-const ADD_COMMENT = "ADD_COMMENT";
-const DELETE_ENTRY_COMMENTS = "DELETE_ENTRY_COMMENTS";
+import { ADD_COMMENT, DELETE_ENTRY_COMMENTS } from './actionTypes';
 
-export const add_comment = comment => {
+export const addComment = comment => {
   return{ type: ADD_COMMENT,
           payload: comment};
 }
-export const delete_entry_comments = id => {
+export const deleteEntryComments = id => {
   return{ type: DELETE_ENTRY_COMMENTS,
           payload: id};
 }

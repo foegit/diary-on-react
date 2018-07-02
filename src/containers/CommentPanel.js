@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import CommentList from '../components/CommentList';
 import Comment from '../components/Comment';
 import AddCommentBox from '../components/AddCommentBox';
-import { add_comment } from '../actions/commentActions';
-import { inc_count_comment } from '../actions/entryActions';
+import { addComment } from '../actions/commentActions';
+import { incCountComment } from '../actions/entryActions';
 
 class CommentPanel extends Component {
   render(){
@@ -35,8 +35,8 @@ function mapStateToProps(state){
 function mapDispatchToProps(dispatch){
   return{
     addComment: (comment) => {
-      dispatch(add_comment(comment));
-      dispatch(inc_count_comment(comment.entryId))
+      dispatch(addComment(comment));
+      dispatch(incCountComment(comment.entryId))
     }
   }
 }

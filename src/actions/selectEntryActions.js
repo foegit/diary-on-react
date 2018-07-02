@@ -1,10 +1,9 @@
-const SELECT_ENTRY = "SELECT_ENTRY";
-const RESET_SELECT = "RESET_SELECT";
+import { SELECT_ENTRY, RESET_SELECT } from './actionTypes';
 
-export const select_entry = id => {
+export const selectEntry = id => {
   return{ type: SELECT_ENTRY,
           payload: {id} };
 }
-export const reset_select = () => {
+export const resetSelect = () => {
   return {  type: RESET_SELECT };
 }

@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
-import EntryReducer from './EntryReducer';
-import CommentReducer from './CommentReducer';
-import SelectedEntryReducer from './SelectedEntryReducer';
 
+import entryReducer from './EntryReducer';
+import commentReducer from './CommentReducer';
+import selectedEntryReducer from './SelectedEntryReducer';
 
 const mainReducer = combineReducers({
-  entry: EntryReducer,
-  comments: CommentReducer,
-  current_entry: SelectedEntryReducer
+  entry: entryReducer,
+  comments: commentReducer,
+  current_entry: selectedEntryReducer
 });
 
 export default mainReducer;
